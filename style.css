@@ -1,32 +1,13 @@
 body {
   margin: 0;
-  background: #000;
-  font-family: 'Outfit', sans-serif;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
 }
 
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-}
-
-video {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-model-viewer {
+video, canvas {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
