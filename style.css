@@ -1,29 +1,62 @@
 body {
   margin: 0;
-  overflow: hidden;
-  font-family: sans-serif;
-  background: black;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(145deg, #1c1e26, #272a36);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-video {
-  position: absolute;
+.hero {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-model-viewer {
-  position: absolute;
+.content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  padding: 2rem;
+  max-width: 800px;
   width: 100%;
-  height: 100%;
-  z-index: 2;
-  display: none; /* Start hidden */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffcb05;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.ar-button {
+  background: #00ffc8;
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.ar-button:hover {
+  background: #0fffc4;
+  transform: scale(1.05);
 }
