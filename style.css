@@ -1,45 +1,62 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(145deg, #1c1e26, #272a36);
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.hero {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
 }
 
-.container {
-  text-align: center;
+.content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
   padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  color: #ffcb05;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
 }
 
 .ar-button {
-  background: #ff9800;
-  color: white;
-  padding: 12px 24px;
-  font-size: 1rem;
+  background: #00ffc8;
+  color: #000;
   border: none;
-  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 30px;
+  font-weight: bold;
   cursor: pointer;
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 20px;
+  transition: 0.3s;
 }
 
 .ar-button:hover {
-  background-color: #e68900;
-}
-
-.note {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #ccc;
+  background: #0fffc4;
+  transform: scale(1.05);
 }
