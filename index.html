@@ -2,112 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AR Animal Detection</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { margin: 0; overflow: hidden; background: #111; }
-    #webcamCanvas, #threeCanvas {
-      position: absolute;
-      top: 0; left: 0;
-      z-index: 1;
-    }
-    #threeCanvas {
-      z-index: 2;
-      pointer-events: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🦖 T-Rex AR Experience</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <video id="webcam" autoplay playsinline muted style="display: none;"></video>
-  <canvas id="webcamCanvas"></canvas>
-  <canvas id="threeCanvas"></canvas>
+  <main class="hero">
+    <div class="content">
+      <h1>🦖 Tyrannosaurus Rex</h1>
+      <p>Experience the king of dinosaurs in Augmented Reality.</p>
 
-  <!-- MediaPipe -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
-
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
-
-  <script>
-    let camera, scene, renderer, model;
-    let modelVisible = false;
-    let canvas = document.getElementById('threeCanvas');
-
-    // Setup THREE.js
-    function initThree() {
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.position.z = 2;
-
-      // Light
-      const light = new THREE.DirectionalLight(0xffffff, 2);
-      light.position.set(1, 1, 1);
-      scene.add(light);
-
-      // Load GLB
-      const loader = new THREE.GLTFLoader();
-      loader.load('model.glb', gltf => {
-        model = gltf.scene;
-        model.scale.set(0.5, 0.5, 0.5);
-        model.position.y = -1;
-        model.visible = false;
-        scene.add(model);
-        animate();
-      });
-    }
-
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    }
-
-    // Setup MediaPipe Holistic (detects people)
-    const holistic = new Holistic({
-      locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`,
-    });
-
-    holistic.setOptions({
-      modelComplexity: 0,
-      smoothLandmarks: true,
-      minDetectionConfidence: 0.7,
-      minTrackingConfidence: 0.7,
-    });
-
-    holistic.onResults(results => {
-      const personDetected = results.poseLandmarks && results.poseLandmarks.length > 0;
-
-      if (model) model.visible = personDetected;
-    });
-
-    // Setup webcam feed
-    const videoElement = document.getElementById('webcam');
-    const canvasElement = document.getElementById('webcamCanvas');
-    const canvasCtx = canvasElement.getContext('2d');
-
-    const cameraFeed = new Camera(videoElement, {
-      onFrame: async () => {
-        canvasElement.width = videoElement.videoWidth;
-        canvasElement.height = videoElement.videoHeight;
-
-        canvasCtx.save();
-        canvasCtx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
-        canvasCtx.restore();
-
-        await holistic.send({ image: videoElement });
-      },
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-
-    cameraFeed.start();
-
-    initThree();
-  </script>
+      <model-viewer
+        src="model.glb"
+        ios-src="model.usdz"
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        camera-controls
+        autoplay
+        shadow-intensity="1"
+        alt="A 3D model of T-Rex"
+        style="width: 100%; height: 500px; background: transparent;"
+      >
+        <button slot="ar-button" class="ar-button">👓 View in AR</button>
+      </model-viewer>
+    </div>
+  </main>
 </body>
 </html>
