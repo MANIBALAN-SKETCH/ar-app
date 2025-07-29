@@ -1,45 +1,67 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Outfit', sans-serif;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   min-height: 100vh;
-}
-
-.container {
   text-align: center;
   padding: 2rem;
 }
 
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+}
+
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #ddd;
+}
+
+.model-viewer {
+  width: 100%;
+  height: 500px;
+  background: transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.model-viewer:hover {
+  transform: scale(1.01);
 }
 
 .ar-button {
   background: #ff9800;
   color: white;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   cursor: pointer;
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
 }
 
 .ar-button:hover {
-  background-color: #e68900;
+  background-color: #e68a00;
 }
 
 .note {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-size: 0.9rem;
-  color: #ccc;
+  color: #bbb;
 }
